@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<style>
+    table, th , td  {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+      font-size: 20px;
+    }
+    table tr:nth-child(odd) {
+      background-color: #f1f1f1;
+    }
+    table tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+    .btn-primary {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+    }
+    .header {
+        padding: 60px;
+        text-align: center;
+        background-color: #1a9ebc;
+        color: black;
+        font-size: 25px;
+    }
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<html>
+    <script src="angular.min.js"></script>
+    <script src="products.js"></script>
+    <body>
+        <div class="header">
+            <h2>Online Shopping</h2>
+            <h3>Products</h3>
+            <div ng-app="myApp" ng-controller="myCtrl">
+                <table class="center">
+                    <tr ng-repeat="product in products">
+                        <td><input type="checkbox" ng-model="product.Selected"></td>
+                        <td>{{product.name}} - {{product.cost}} Rs</td>
+                    </tr>
+                </table>
+                <button class="btn btn-primary" ng-click="addToCart()" style="margin-top:10px;">Add To Cart</button>
+                <h3>Cart</h3>
+                <p>
+                    Total Items: {{ cart.length }} Total Cost: {{ cartTotal }}
+                </p>
+                <table class="center">
+                    <tr ng-repeat="item in cart">
+                        <td>{{item.name}} - {{item.cost}}</td>
+                        <td><button class="btn btn-primary" ng-click="removeFromCart(item)">Remove from Cart</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
